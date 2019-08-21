@@ -1,0 +1,42 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/FullAdder.hdl
+
+/**
+ * Computes the sum of three bits.
+ */
+
+CHIP FullAdder {
+    IN a, b, c;  // 1-bit inputs
+    OUT sum,     // Right bit of a + b + c
+        carry;   // Left bit of a + b + c
+
+    PARTS:
+    // Put you code here:     
+    /*
+    *|   a   |   b   |   c   | sumAB | carryOut |  sum  | carry |
+	*|   0   |   0   |   0   |  0    |   0      |   0   |   0   |
+	*|   0   |   0   |   1   |  0    |   0      |   1   |   0   |
+	*|   0   |   1   |   0   |  1    |   0      |   1   |   0   |
+	*|   0   |   1   |   1   |  1    |   0      |   0   |   1   |
+	*|   1   |   0   |   0   |  1    |   0      |   1   |   0   |
+	*|   1   |   0   |   1   |  1    |   0      |   0   |   1   |
+	*|   1   |   1   |   0   |  0    |   1      |   0   |   1   |
+	*|   1   |   1   |   1   |  0    |   1      |   1   |   1   |
+    *Sum = A Xor B Xor C 
+    *Carry = A Xor B And C
+    */
+     
+    HalfAdder(a = a, b = b, sum = sumAB, carry = carryOut);
+	HalfAdder(a = sumAB, b = c, sum = sum, carry = carryOut2);
+	Or(a = carryOut, b = carryOut2, out = carry);
+		                     
+    /* Done with basic gates 
+    *Xor(a = a, b = b, out = sumAB);
+    *And(a = a, b = b, out = carryOut);
+    *Xor(a = sumAB, b = c, out = sum);      
+    *And(a = sumAB, b = c, out = carryOut2);
+    *Or(a = carryOut2, b = carryOut, out = carry);
+    */
+}
