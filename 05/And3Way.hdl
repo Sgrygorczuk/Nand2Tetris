@@ -1,0 +1,19 @@
+// This is an addtional file made Sebastian Grygorczuk for the nand2tetris project                  
+// File name: projects/01/And3Way.hdl                       
+                                                        
+/**                                                     
+ * And gate:                                            
+ * out = 1 if (a == 1 and b == 1 and c == 1)                       
+ *       0 otherwise                                    
+ */                                                     
+                                                        
+CHIP And3Way {                                              
+    IN a, b, c;                                            
+    OUT out;                                            
+                                                        
+    PARTS:                                              
+    // Put your code here:                              
+    And(a = a, b = b, out = temp);                   
+    And(a = temp, b = c, out = out);                         
+}                                                       
+                                                        

@@ -1,0 +1,36 @@
+CHIP JMP{
+
+    IN  j1,
+   		j2,
+    	j3, 
+    	ng, 
+    	zr;
+
+    OUT out;
+
+    PARTS:  
+    
+    Not(in = ng, out = ngNot);
+    Not(in = zr, out = zrNot);
+        
+   	//EqOne = j3*ngNot*zrNot
+  	And(a = j3, b = ngNot, out = EqOnePart);
+  	And(a = EqOnePart, b = zrNot, out = EqOne);
+  	
+  	//EqTwo = j2*ngNot*zr
+  	And(a = j2, b = ngNot, out = EqTwoPart);
+  	And(a = EqTwoPart, b = zr, out = EqTwo);
+  	
+  	//EqThree = j1*j2*j3
+  	And(a = j1, b = j2, out = EqThreePart);
+  	And(a = EqThreePart, b = j3, out = EqThree);
+  	
+    //EqFour = j1*ng*zrNot
+    And(a = j1, b = ng, out = EqFourPart);
+    And(a = EqFourPart, b = zrNot, out = EqFour);
+    
+	//OR Eq1 + Eq2 + Eq3 + Eq4                                
+	Or(a = EqOne, b = EqTwo, out = EqPartOne);                	
+	Or(a = EqThree, b = EqFour, out = EqPartTwo);             		
+	Or(a = EqPartOne, b = EqPartTwo, out = out); 				
+}
