@@ -24,4 +24,8 @@ Folders 01-05 deal with the creation of a sixteen-bit CPU using HDL, 06-12 deal 
 07 VM Part I Arithmetic and Memory:
       Reads the input VM files and translates them to ASM files, only dealing with basic arithmetic and memory calls 
       
-08 VM Part II Protocols:
+08 VM Part II Function Protocols:
+      Implementing the loop structure and function call ability
+
+09 High-Level Language:
+      Creating a custom game using Jack programing language 
